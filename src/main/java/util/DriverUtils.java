@@ -21,5 +21,4 @@ public class DriverUtils {
         getJSExecutor().executeScript("arguments[0].click",element);
     }
 
-
 }
