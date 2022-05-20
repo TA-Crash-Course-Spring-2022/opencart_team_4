@@ -19,4 +19,22 @@ public class RegisterUserModelRepository {
                 .setPasswordConfirm(password)
                 .build();
     }
+
+    public static RegisterUserModel getInvalidRegisterUser(){
+        return RegisterUserModel.builder()
+                .setFirstName(RandomStringUtils.randomAlphabetic(8))
+                .build();
+    }
+
+    public static RegisterUserModel getRegisterUserWithInvalidTelephone(){
+        String password = RandomStringUtils.randomAlphabetic(12);
+        return RegisterUserModel.builder()
+                .setFirstName(RandomStringUtils.randomAlphabetic(8))
+                .setLastName(RandomStringUtils.randomAlphabetic(8))
+                .setEmail(RandomStringUtils.randomAlphabetic(7)+"@gmail.com")
+                .setTelephone(RandomStringUtils.randomAlphabetic(10))
+                .setPassword(password)
+                .setPasswordConfirm(password)
+                .build();
+    }
 }

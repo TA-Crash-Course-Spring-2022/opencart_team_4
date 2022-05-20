@@ -15,7 +15,7 @@ public class RegisterPageBL {
         registerPage = new RegisterPage();
     }
 
-    public RegisterPageBL registerNewUser(RegisterUserModel registerUserModel){
+    public SuccessfulRegisterPageBL registerNewUser(RegisterUserModel registerUserModel){
         inputFirstName(registerUserModel.getFirstName());
         inputLastName(registerUserModel.getLastName());
         inputEmail(registerUserModel.getEmail());
@@ -26,6 +26,12 @@ public class RegisterPageBL {
         selectPrivacyPolicyCheckbox();
         clickOnContinueButton();
         successfulRegisterPage = new SuccessfulRegisterPage();
+        return new SuccessfulRegisterPageBL();
+    }
+
+    public RegisterPageBL registerNewUserWithoutInfo(RegisterUserModel registerUserModel){
+        selectPrivacyPolicyCheckbox();
+        clickOnContinueButton();
         return this;
     }
 
@@ -75,8 +81,9 @@ public class RegisterPageBL {
         registerPage.getContinueButton().click();
     }
 
-    public void verifySuccessfulUserRegistration(){
-        String expectedMessage = "Your Account Has Been Created!";
-        Assert.assertEquals(successfulRegisterPage.getSuccessfulRegistrationMessage().getText(),expectedMessage,"Error - user has not been registered");
+    public RegisterPageBL verifyUnsuccessfulUserRegistration(){
+        String expectedMessage = "First Name must be between 1 and 32 characters!";
+        Assert.assertEquals(registerPage.getUnsuccessfulRegistrationMessage().getText(),expectedMessage,"Error - user has been registered");
+        return this;
     }
 }

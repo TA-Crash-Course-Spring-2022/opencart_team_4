@@ -30,6 +30,9 @@ public class RegisterPage extends BasePage{
     @FindBy(xpath = ".//*[@type='submit']")
     private WebElement continueButton;
 
+    @FindBy(xpath = "//*[@id=\"account\"]/div[2]/div/div"  )
+    private WebElement firstNameDangerText;
+
     public WebElement getRadioButton(int value){
         return driver.findElement(By.xpath(".//*[@class='radio-inline']/*[@type='radio' and @value='"+value+"']"));
     }
@@ -64,5 +67,9 @@ public class RegisterPage extends BasePage{
 
     public WebElement getContinueButton(){
         return continueButton;
+    }
+
+    public WebElement getUnsuccessfulRegistrationMessage(){
+        return firstNameDangerText;
     }
 }
