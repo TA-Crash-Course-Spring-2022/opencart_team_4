@@ -3,16 +3,16 @@ package pages;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class SuccessfulRegisterPage extends BasePage{
+public class SuccessfulLogoutPage extends BasePage{
 
     @FindBy(xpath = ".//*[@id='content']/h1")
-    private WebElement successfulRegistrationMessage;
+    private WebElement successfulLogoutMessage;
 
     @FindBy(xpath = "//*[@id=\"content\"]/div/div/a")
     private WebElement continueButton;
 
-    public WebElement getSuccessfulRegistrationMessage(){
-        return successfulRegistrationMessage;
+    public WebElement getSuccessfulLogoutMessage() {
+        return successfulLogoutMessage;
     }
 
     public WebElement getContinueButton() {
