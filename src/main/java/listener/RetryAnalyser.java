@@ -22,4 +22,5 @@ public class RetryAnalyser implements IRetryAnalyzer {
     }
 
     private boolean isRetryAvaliable(){return counter.intValue()>0;}
+
 }
