@@ -35,6 +35,32 @@ public class RegisterPageBL {
         return this;
     }
 
+    public RegisterPageBL registerNewUserWithInvalidEmail(RegisterUserModel registerUserModel){
+        inputFirstName(registerUserModel.getFirstName());
+        inputLastName(registerUserModel.getLastName());
+        inputEmail(registerUserModel.getEmail());
+        inputTelephone(registerUserModel.getTelephone());
+        inputPassword(registerUserModel.getPassword());
+        inputPasswordConfirm(registerUserModel.getPasswordConfirm());
+        clickSubscribeButton(1);
+        selectPrivacyPolicyCheckbox();
+        clickOnContinueButton();
+        return this;
+    }
+
+    public RegisterPageBL registerNewUserWithInvalidConfirmPassword(RegisterUserModel registerUserModel){
+        inputFirstName(registerUserModel.getFirstName());
+        inputLastName(registerUserModel.getLastName());
+        inputEmail(registerUserModel.getEmail());
+        inputTelephone(registerUserModel.getTelephone());
+        inputPassword(registerUserModel.getPassword());
+        inputPasswordConfirm(registerUserModel.getPasswordConfirm());
+        clickSubscribeButton(1);
+        selectPrivacyPolicyCheckbox();
+        clickOnContinueButton();
+        return this;
+    }
+
     private void inputFirstName(String name){
         try{
             registerPage.getFirstNameInput().clear();
@@ -86,4 +112,18 @@ public class RegisterPageBL {
         Assert.assertEquals(registerPage.getUnsuccessfulRegistrationMessage().getText(),expectedMessage,"Error - user has been registered");
         return this;
     }
+
+    public RegisterPageBL verifyInvalidEmailInput(){
+        String expectedMessage = "E-Mail Address does not appear to be valid!";
+        Assert.assertEquals(registerPage.getEmailDangerText().getText(),expectedMessage,"Error - user has been registered");
+        return this;
+    }
+
+    public RegisterPageBL verifyInvalidConfirmPasswordInput(){
+        String expectedMessage = "Password confirmation does not match password!";
+        Assert.assertEquals(registerPage.getConfirmPasswordDangerText().getText(),expectedMessage,"Error - user has been registered");
+        return this;
+    }
+
+
 }

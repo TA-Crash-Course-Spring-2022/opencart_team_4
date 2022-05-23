@@ -13,11 +13,13 @@ public class ChangeUserAccountInfoTest extends BaseTest{
 
     RegisterUserModel validUserModel;
     RegisterUserModel validChangedUserModel;
+    RegisterUserModel invalidEmailUserModel;
 
     @BeforeMethod
     public void registerValidUser(){
         validUserModel = RegisterUserModelRepository.getValidRegisterUser();
         validChangedUserModel = RegisterUserModelRepository.getValidRegisterUser();
+        invalidEmailUserModel = RegisterUserModelRepository.getUserWithInvalidEmail();
         new Navigation().navigateByUrl(BASE_URL);
         HomePageBL homePageBL = new HomePageBL();
         homePageBL.getHeaderPageBL()
@@ -33,8 +35,17 @@ public class ChangeUserAccountInfoTest extends BaseTest{
         MyAccountPageBL myAccountPageBL = new MyAccountPageBL();
         myAccountPageBL.clickOnEditAccountButton()
                 .changeUserInfo(validChangedUserModel)
+                .clickContinueButtonPositiveScenario()
                 .clickOnEditAccountButton()
-                .vefifyChangeUserInfo(validChangedUserModel);
+                .verifyChangeUserInfo(validChangedUserModel);
     }
 
+    @Test
+    public void changeUserAccountWithInvalidEmailNegativeTest(){
+        MyAccountPageBL myAccountPageBL = new MyAccountPageBL();
+        myAccountPageBL.clickOnEditAccountButton()
+                .changeUserInfo(invalidEmailUserModel)
+                .clickContinueButtonNegativeScenario()
+                .verifyInvalidEmailInput();
+    }
 }

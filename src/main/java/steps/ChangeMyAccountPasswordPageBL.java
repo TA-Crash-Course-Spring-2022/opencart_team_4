@@ -2,6 +2,7 @@ package steps;
 
 import models.RegisterUserModel;
 import org.apache.commons.lang3.RandomStringUtils;
+import org.testng.Assert;
 import pages.ChangeMyAccountPasswordPage;
 import pages.MyAccountPage;
 
@@ -14,7 +15,7 @@ public class ChangeMyAccountPasswordPageBL {
         changeMyAccountPasswordPage = new ChangeMyAccountPasswordPage();
     }
 
-    public MyAccountPageBL changeUserPassword(RegisterUserModel registerUserModel){
+    public MyAccountPageBL changeUserPasswordPositiveScenario(RegisterUserModel registerUserModel){
         String password = RandomStringUtils.randomAlphabetic(12);
         registerUserModel.setPassword(password);
         registerUserModel.setPasswordConfirm(password);
@@ -23,6 +24,21 @@ public class ChangeMyAccountPasswordPageBL {
         clickOnContinueButton();
         myAccountPage = new MyAccountPage();
         return new MyAccountPageBL();
+    }
+
+    public ChangeMyAccountPasswordPageBL changeUserPasswordNegativeScenario(RegisterUserModel registerUserModel){
+        registerUserModel.setPassword(RandomStringUtils.randomAlphabetic(12));
+        registerUserModel.setPasswordConfirm(RandomStringUtils.randomAlphabetic(12));
+        inputPassword(registerUserModel.getPassword());
+        inputConfirmPassword(registerUserModel.getPasswordConfirm());
+        clickOnContinueButton();
+        return this;
+    }
+
+    public ChangeMyAccountPasswordPageBL verifyInvalidChangePasswordInput(){
+        String expectedMessage = "Password confirmation does not match password!";
+        Assert.assertEquals(changeMyAccountPasswordPage.getConfirmPasswordDangerText().getText(),expectedMessage,"Error - email was changed!");
+        return this;
     }
 
     private void inputPassword(String password){

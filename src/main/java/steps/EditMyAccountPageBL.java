@@ -14,17 +14,26 @@ public class EditMyAccountPageBL {
         editMyAccountPage = new EditMyAccountPage();
     }
 
-    public MyAccountPageBL changeUserInfo(RegisterUserModel registerUserModel){
+    public EditMyAccountPageBL changeUserInfo(RegisterUserModel registerUserModel){
         inputFirstName(registerUserModel.getFirstName());
         inputLastName(registerUserModel.getLastName());
         inputEmail(registerUserModel.getEmail());
         inputTelephone(registerUserModel.getTelephone());
+        return this;
+    }
+
+    public MyAccountPageBL clickContinueButtonPositiveScenario(){
         clickOnContinueButton();
         myAccountPage = new MyAccountPage();
         return new MyAccountPageBL();
     }
 
-    public EditMyAccountPageBL vefifyChangeUserInfo(RegisterUserModel registerUserModel){
+    public EditMyAccountPageBL clickContinueButtonNegativeScenario(){
+        clickOnContinueButton();
+        return this;
+    }
+
+    public EditMyAccountPageBL verifyChangeUserInfo(RegisterUserModel registerUserModel){
         Assert.assertEquals(registerUserModel.getFirstName(),getFirstName(),"Error - First name not changed");
         Assert.assertEquals(registerUserModel.getLastName(),getLastName(),"Error - Last name not changed");
         Assert.assertEquals(registerUserModel.getEmail(),getEmail(),"Error - Email not changed");
@@ -32,6 +41,11 @@ public class EditMyAccountPageBL {
         return this;
     }
 
+    public EditMyAccountPageBL verifyInvalidEmailInput(){
+        String expectedMessage = "E-Mail Address does not appear to be valid!";
+        Assert.assertEquals(editMyAccountPage.getEmailDangerText().getText(),expectedMessage,"Error - email was changed!");
+        return this;
+    }
 
     private void inputFirstName(String firstName){
         editMyAccountPage.getFirstNameInput().clear();

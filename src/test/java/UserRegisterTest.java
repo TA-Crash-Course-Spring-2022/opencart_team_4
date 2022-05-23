@@ -29,4 +29,26 @@ public class UserRegisterTest extends BaseTest{
                 .registerNewUserWithoutInfo(RegisterUserModelRepository.getInvalidRegisterUser())
                 .verifyUnsuccessfulUserRegistration();
     }
+
+    @Test
+    public void registerUserWithInvalidEmailNegativeTest(){
+        new Navigation().navigateByUrl(BASE_URL);
+        HomePageBL homePageBL = new HomePageBL();
+        homePageBL.getHeaderPageBL()
+                .clickOnMyAccountButton()
+                .clickOnRegisterButton()
+                .registerNewUserWithInvalidEmail(RegisterUserModelRepository.getUserWithInvalidEmail())
+                .verifyInvalidEmailInput();
+    }
+
+    @Test
+    public void registerUserWithInvalidConfirmPasswordNegativeTest(){
+        new Navigation().navigateByUrl(BASE_URL);
+        HomePageBL homePageBL = new HomePageBL();
+        homePageBL.getHeaderPageBL()
+                .clickOnMyAccountButton()
+                .clickOnRegisterButton()
+                .registerNewUserWithInvalidConfirmPassword(RegisterUserModelRepository.getUserWithInvalidConfirmPassword())
+                .verifyInvalidConfirmPasswordInput();
+    }
 }

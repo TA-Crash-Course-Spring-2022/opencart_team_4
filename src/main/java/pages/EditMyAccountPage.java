@@ -23,6 +23,9 @@ public class EditMyAccountPage extends BasePage{
     @FindBy(xpath = "//*[@id=\"content\"]/form/div/div[1]/a")
     private WebElement backButton;
 
+    @FindBy(xpath = "//*[@id=\"content\"]/form/fieldset/div[3]/div/div")
+    private WebElement emailDangerText;
+
     public WebElement getFirstNameInput() {
         return inputFirstName;
     }
@@ -45,5 +48,9 @@ public class EditMyAccountPage extends BasePage{
 
     public WebElement getBackButton() {
         return backButton;
+    }
+
+    public WebElement getEmailDangerText() {
+        return emailDangerText;
     }
 }

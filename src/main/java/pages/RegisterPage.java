@@ -30,8 +30,15 @@ public class RegisterPage extends BasePage{
     @FindBy(xpath = ".//*[@type='submit']")
     private WebElement continueButton;
 
-    @FindBy(xpath = "//*[@id=\"account\"]/div[2]/div/div"  )
+    @FindBy(xpath = "//*[@id=\"account\"]/div[2]/div/div")
     private WebElement firstNameDangerText;
+
+    @FindBy(xpath = "//*[@id=\"account\"]/div[4]/div/div")
+    private WebElement emailDangerText;
+
+    @FindBy(xpath = "//*[@id=\"content\"]/form/fieldset[2]/div[2]/div/div")
+    private WebElement confirmPasswordDangerText;
+
 
     public WebElement getRadioButton(int value){
         return driver.findElement(By.xpath(".//*[@class='radio-inline']/*[@type='radio' and @value='"+value+"']"));
@@ -71,5 +78,13 @@ public class RegisterPage extends BasePage{
 
     public WebElement getUnsuccessfulRegistrationMessage(){
         return firstNameDangerText;
+    }
+
+    public WebElement getEmailDangerText() {
+        return emailDangerText;
+    }
+
+    public WebElement getConfirmPasswordDangerText() {
+        return confirmPasswordDangerText;
     }
 }

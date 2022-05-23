@@ -31,7 +31,7 @@ public class ChangeUserPasswordTest extends BaseTest{
     public void changeUserPasswordPositiveTest() {
         MyAccountPageBL myAccountPageBL = new MyAccountPageBL();
         myAccountPageBL.clickOnChangePasswordButton()
-                .changeUserPassword(validUserModel)
+                .changeUserPasswordPositiveScenario(validUserModel)
                 .clickOnLogoutButton()
                 .verifySuccessfulUserLogout()
                 .clickOnContinueButton()
@@ -42,5 +42,11 @@ public class ChangeUserPasswordTest extends BaseTest{
                 .verifySuccessfulUserLogin();
     }
 
-
+    @Test
+    public void changeUserPasswordNegativeTest() {
+        MyAccountPageBL myAccountPageBL = new MyAccountPageBL();
+        myAccountPageBL.clickOnChangePasswordButton()
+                .changeUserPasswordNegativeScenario(validUserModel)
+                .verifyInvalidChangePasswordInput();
+    }
 }

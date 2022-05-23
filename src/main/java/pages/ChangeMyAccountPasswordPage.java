@@ -17,6 +17,9 @@ public class ChangeMyAccountPasswordPage extends BasePage{
     @FindBy(xpath = "//*[@id=\"content\"]/form/div/div[1]/a")
     private WebElement backButton;
 
+    @FindBy(xpath = "//*[@id=\"content\"]/form/fieldset/div[2]/div/div")
+    private WebElement confirmPasswordDangerText;
+
     public WebElement getInputPassword() {
         return inputPassword;
     }
@@ -31,5 +34,9 @@ public class ChangeMyAccountPasswordPage extends BasePage{
 
     public WebElement getBackButton() {
         return backButton;
+    }
+
+    public WebElement getConfirmPasswordDangerText() {
+        return confirmPasswordDangerText;
     }
 }
